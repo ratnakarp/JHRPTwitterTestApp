@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace JHRPTwitterTestApp.Data.TwitterApi.Client
 {
@@ -18,11 +19,14 @@ namespace JHRPTwitterTestApp.Data.TwitterApi.Client
         private WebRequest _request;
         private int _maxCount = 10;
         private readonly ILogger<TwitterRestClient> _twitterRestCLogger;
-        public TwitterRestClient(string apiUrl, string bearerToken, ILogger<TwitterRestClient> twitterRestCLogger)
+        private readonly IMemoryCache _memoryCache;
+        private readonly string CacheKey = "SampleStreamList";
+        public TwitterRestClient(string apiUrl, string bearerToken, ILogger<TwitterRestClient> twitterRestCLogger, IMemoryCache memoryCache)
         {
             _apiUrl = apiUrl;
             _bearerToken = bearerToken;
             _twitterRestCLogger = twitterRestCLogger;
+            _memoryCache = memoryCache;
         }
 
 
@@ -30,17 +34,30 @@ namespace JHRPTwitterTestApp.Data.TwitterApi.Client
         {
             try
             {
-                _request = WebRequest.Create($"{_apiUrl}/{endPoint}");
-                _request.Method = "GET";
-
-                List<SampledStreamResponse> listOfResponses =
-                    JsonConvert.DeserializeObject<List<SampledStreamResponse>>(await GetResponse(_request));
-
-                SampleStreamModel sampleStreamModel = new SampleStreamModel()
+                if (!_memoryCache.TryGetValue(CacheKey, out SampleStreamModel sampleStreamModel))
                 {
-                    TotalCount = listOfResponses.Count,
-                    ListOfSampledStreamResponse = listOfResponses?.Take(10).ToList()
-                };
+                    _request = WebRequest.Create($"{_apiUrl}/{endPoint}");
+                    _request.Method = "GET";
+
+                    List<SampledStreamResponse> listOfResponses =
+                        JsonConvert.DeserializeObject<List<SampledStreamResponse>>(await GetResponse(_request));
+
+                    sampleStreamModel = new SampleStreamModel()
+                    {
+                        TotalCount = listOfResponses.Count,
+                        ListOfSampledStreamResponse = listOfResponses?.Take(10).ToList()
+                    };
+
+                    var cacheExpiryOptions = new MemoryCacheEntryOptions
+                    {
+                        AbsoluteExpiration = DateTime.Now.AddSeconds(50),
+                        Priority = CacheItemPriority.High,
+                        SlidingExpiration = TimeSpan.FromSeconds(20)
+                    };
+                    //setting cache entries
+                    _memoryCache.Set(CacheKey, sampleStreamModel, cacheExpiryOptions);
+                }
+
                 return sampleStreamModel;
 
             }

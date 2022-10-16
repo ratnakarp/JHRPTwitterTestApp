@@ -44,6 +44,7 @@ namespace JHRPTwitterTestApp.Web
                     Description = "Sample Service for Twitter Sample Stream"
                 });
             });
+            services.AddMemoryCache();
 
             ConfigureApplicationServices(services);
         }
