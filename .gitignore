@@ -8,3 +8,6 @@
 /JHRPTwitterTestApp.Tests/bin/Debug/netcoreapp3.1
 /JHRPTwitterTestApp.Tests/obj
 /JWRPTwitterTestApp.Data/obj
+/JHRPTwitterTestApp.Web/bin/Debug/netcoreapp3.1
+/JHRPTwitterTestApp.Web/obj/Debug/netcoreapp3.1
+/JHRPTwitterTestApp.Web/obj
