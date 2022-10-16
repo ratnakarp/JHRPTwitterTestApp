@@ -3,3 +3,8 @@
 ################################################################################
 
 /JHRPTwitterTestApp.Data/obj
+/JHRPTwitterTestApp.Data/bin/Debug/netcoreapp3.1
+/.vs/JHRPTwitterTestApp
+/JHRPTwitterTestApp.Tests/bin/Debug/netcoreapp3.1
+/JHRPTwitterTestApp.Tests/obj
+/JWRPTwitterTestApp.Data/obj
