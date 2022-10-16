@@ -1,6 +1,8 @@
+using JHRPTwitterTestApp.Data.TwitterApi.Abstractions;
 using JHRPTwitterTestApp.Data.TwitterApi.ApiAccess;
 using JHRPTwitterTestApp.Data.TwitterApi.Client;
 using JHRPTwitterTestApp.Web;
+using JHRPTwitterTestApp.Web.Abstractions;
 using JHRPTwitterTestApp.Web.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace JHRPTwitterTestApp
+namespace JHRPTwitterTestApp.Web
 {
     public class Startup : ServiceStartupBase
     {
@@ -23,12 +25,12 @@ namespace JHRPTwitterTestApp
 
             services.AddTransient((provider) =>
             {
-                var ilogger = provider.GetRequiredService<ILogger<TwitterRestClient>>();
-                return new TwitterRestClient(twitterConfig.Url, twitterConfig.BearerToken, ilogger);
+                var iLogger = provider.GetRequiredService<ILogger<TwitterRestClient>>();
+                return new TwitterRestClient(twitterConfig.Url, twitterConfig.BearerToken, iLogger);
             });
 
-            services.AddTransient<TwitterApiAccess>();
-            services.AddTransient<TwitterService>();
+            services.AddTransient<ITwitterApiAccess, TwitterApiAccess>();
+            services.AddTransient<ITwitterService, TwitterService>();
         }
         protected override void ConfigureApplication(IApplicationBuilder app, IWebHostEnvironment env)
         {

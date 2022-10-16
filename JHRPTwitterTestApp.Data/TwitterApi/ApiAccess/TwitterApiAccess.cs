@@ -1,22 +1,22 @@
-﻿using JHRPTwitterTestApp.Data.TwitterApi.Client;
+﻿using JHRPTwitterTestApp.Data.TwitterApi.Abstractions;
+using JHRPTwitterTestApp.Data.TwitterApi.Client;
 using JHRPTwitterTestApp.Data.TwitterApi.Response;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace JHRPTwitterTestApp.Data.TwitterApi.ApiAccess
 {
-    public class TwitterApiAccess
+    public class TwitterApiAccess : ITwitterApiAccess
     {
         private readonly TwitterRestClient _twitterRestClient;
-        private const string SAMPLE_STREAM_API_ENDPOINT = "tweets/sample/stream";
+        private const string SampleStreamApiEndpoint = "tweets/sample/stream";
         public TwitterApiAccess(TwitterRestClient twitterRestClient)
         {
             _twitterRestClient = twitterRestClient;
         }
 
-        public async Task<List<SampledStreamResponse>> GetSampleStreamAsync()
+        public async Task<SampleStreamModel> GetSampleStreamAsync()
         {
-            var response = await _twitterRestClient.GetAsync(SAMPLE_STREAM_API_ENDPOINT);
+            var response = await _twitterRestClient.GetAsync(SampleStreamApiEndpoint);
             return response;
         }
     }

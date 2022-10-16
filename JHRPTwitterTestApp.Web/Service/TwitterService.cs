@@ -1,19 +1,19 @@
-﻿using JHRPTwitterTestApp.Data.TwitterApi.ApiAccess;
+﻿using JHRPTwitterTestApp.Data.TwitterApi.Abstractions;
 using JHRPTwitterTestApp.Data.TwitterApi.Response;
-using System.Collections.Generic;
+using JHRPTwitterTestApp.Web.Abstractions;
 using System.Threading.Tasks;
 
 namespace JHRPTwitterTestApp.Web.Service
 {
-    public class TwitterService
+    public class TwitterService : ITwitterService
     {
-        private readonly TwitterApiAccess _twitterApiAccess;
-        public TwitterService(TwitterApiAccess twitterApiAccess)
+        private readonly ITwitterApiAccess _twitterApiAccess;
+        public TwitterService(ITwitterApiAccess twitterApiAccess)
         {
             _twitterApiAccess = twitterApiAccess;
         }
 
-        public async Task<List<SampledStreamResponse>> GetSampleStreamAsync()
+        public async Task<SampleStreamModel> GetSampleStreamAsync()
         {
             return await _twitterApiAccess.GetSampleStreamAsync();
         }

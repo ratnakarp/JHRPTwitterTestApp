@@ -1,4 +1,4 @@
-﻿using JHRPTwitterTestApp.Web.Service;
+﻿using JHRPTwitterTestApp.Web.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -8,8 +8,8 @@ namespace JHRPTwitterTestApp.Web.Controllers
     [ApiController]
     public class TwitterAccessController : ControllerBase
     {
-        private TwitterService _twitterManager;
-        public TwitterAccessController(TwitterService twitterManager)
+        private ITwitterService _twitterManager;
+        public TwitterAccessController(ITwitterService twitterManager)
         {
             _twitterManager = twitterManager;
         }

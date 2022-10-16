@@ -26,7 +26,7 @@ namespace JHRPTwitterTestApp.Data.TwitterApi.Client
         }
 
 
-        public async Task<List<SampledStreamResponse>> GetAsync(string endPoint)
+        public async Task<SampleStreamModel> GetAsync(string endPoint)
         {
             try
             {
@@ -36,7 +36,12 @@ namespace JHRPTwitterTestApp.Data.TwitterApi.Client
                 List<SampledStreamResponse> listOfResponses =
                     JsonConvert.DeserializeObject<List<SampledStreamResponse>>(await GetResponse(_request));
 
-                return listOfResponses?.Take(10).ToList();
+                SampleStreamModel sampleStreamModel = new SampleStreamModel()
+                {
+                    TotalCount = listOfResponses.Count,
+                    ListOfSampledStreamResponse = listOfResponses?.Take(10).ToList()
+                };
+                return sampleStreamModel;
 
             }
             catch (Exception e)

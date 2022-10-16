@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using NLog.Web;
 
-namespace JHRPTwitterTestApp
+namespace JHRPTwitterTestApp.Web
 {
     public class Program
     {
