@@ -1,4 +1,4 @@
-﻿namespace JWRPTwitterTestApp.Data.TwitterApi.Response
+﻿namespace JHRPTwitterTestApp.Data.TwitterApi.Response
 {
     public class SampledStreamResponse
     {

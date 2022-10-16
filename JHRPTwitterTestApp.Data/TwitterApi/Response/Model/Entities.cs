@@ -1,7 +1,7 @@
-﻿using JWRPTwitterTestApp.Data.TwitterApi.Response.Abstractions;
+﻿using JHRPTwitterTestApp.Data.TwitterApi.Response.Abstractions;
 using System.Collections.Generic;
 
-namespace JWRPTwitterTestApp.Data.TwitterApi.Response.Model
+namespace JHRPTwitterTestApp.Data.TwitterApi.Response.Model
 {
     public class Entities : IEntities
     {

@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using JWRPTwitterTestApp.Data.TwitterApi.Client;
+﻿using JHRPTwitterTestApp.Data.TwitterApi.Client;
+using JHRPTwitterTestApp.Data.TwitterApi.Response;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using JWRPTwitterTestApp.Data.TwitterApi.Response;
 
-namespace JWRPTwitterTestApp.Data.TwitterApi.ApiAccess
+namespace JHRPTwitterTestApp.Data.TwitterApi.ApiAccess
 {
     public class TwitterApiAccess
     {
-        private TwitterRestClient _twitterRestClient;
+        private readonly TwitterRestClient _twitterRestClient;
         private const string SAMPLE_STREAM_API_ENDPOINT = "tweets/sample/stream";
         public TwitterApiAccess(TwitterRestClient twitterRestClient)
         {

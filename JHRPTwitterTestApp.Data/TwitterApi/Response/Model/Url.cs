@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using JWRPTwitterTestApp.Data.TwitterApi.Response.Abstractions;
+﻿using JHRPTwitterTestApp.Data.TwitterApi.Response.Abstractions;
 
-namespace JWRPTwitterTestApp.Data.TwitterApi.Response.Model
+namespace JHRPTwitterTestApp.Data.TwitterApi.Response.Model
 {
     public class Url : IUrl
     {

@@ -1,4 +1,4 @@
-﻿using JWRPTwitterTestApp.Data.TwitterApi.Response;
+﻿using JHRPTwitterTestApp.Data.TwitterApi.Response;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
@@ -9,7 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JWRPTwitterTestApp.Data.TwitterApi.Client
+namespace JHRPTwitterTestApp.Data.TwitterApi.Client
 {
     public class TwitterRestClient
     {

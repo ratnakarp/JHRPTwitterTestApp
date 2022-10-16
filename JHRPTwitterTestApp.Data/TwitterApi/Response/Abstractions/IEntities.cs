@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace JWRPTwitterTestApp.Data.TwitterApi.Response.Abstractions
+namespace JHRPTwitterTestApp.Data.TwitterApi.Response.Abstractions
 {
 
     public interface IEntities
